@@ -1,0 +1,73 @@
+
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    添加文章
+{% endblock %}
+
+
+{% block js %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+<section class="rt_wrap mCustomScrollbar">
+
+    <div class="rt_content">
+        <div class="page_title">
+            <a class="fr top_rt_btn" href="{{ url_for('back.article_list') }}">返回文章列表</a>
+        </div>
+        <form action="" method="post">
+            {{ error }}
+            <input type='hidden' name='csrfmiddlewaretoken' value='q3tTrBuDcMhfvSS9x2u0yQAyRbboSQuyMyt42kgwgKS0rKxCv31hIWTsS3ULhZn7' />
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">文章标题：</span>
+                        <input type="text" name="name" value="" class="textbox textbox_295" placeholder="文章标题..."/>
+                        
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章描述：</span>
+                        <input type="text" name="desc" value=""  class="textbox" placeholder="文章描述..."/>
+                        
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">分类：</span>
+                        <select class="select" name="category">
+                            {% for type in types %}
+                                <option value="{{ type.id }}">{{ type.t_name }}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </li>
+                    <li>
+                    </li>
+
+                    <li>
+                        <span class="item_name" style="width:120px;">文章详情：</span>
+
+                            <textarea id="editor" name="content" style="width:100%; height:200px;"></textarea>
+
+                            <link rel="stylesheet" type="text/css" href="/static/wangEditor/dist/css/wangEditor.min.css">
+
+                            <script type="text/javascript" src="/static/wangEditor/dist/js/lib/jquery-1.10.2.min.js"></script>
+                            <script type="text/javascript" src="/static/wangEditor/dist/js/wangEditor.min.js"></script>
+                            <script type="text/javascript">
+                                    $(function () {
+                                        var editor = new wangEditor('editor');
+                                        editor.create();
+                                    });
+                                </script>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" class="link_btn"/>
+                    </li>
+                </ul>
+            </section>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,113 @@
+
+{% extends 'web/base_main.html' %}
+
+{% block css %}
+	{{ super() }}
+    <link rel="stylesheet" href="/static/web/css/blog.css" />
+{% endblock %}
+
+{% block js %}
+	{{ super() }}
+ 	<script src="/static/web/js/yss/article.js"></script>
+{% endblock %}
+
+{% block title %}
+	文章
+{% endblock %}
+
+{% block content %}
+    <div class="doc-container" id="doc-container">
+        <div class="container-fixed">
+		    <div class="col-content">
+		        <div class="inner">
+		            <article class="article-list bloglist" id="LAY_bloglist" >
+						{% for article in articles %}
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="{{ url_for('web.read', id=article.id) }}">{{ article.title }}</a>
+							</h5>
+							<div class="time">
+								<span class="day">{{ article.create_time.day }}</span>
+								<span class="month fs-18">{{ article.create_time.month }}<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">{{ article.create_time.year }}</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="/static/web/image/cover/2019121192339714.png">
+								</a>
+								{{ article.desc }}
+							</div>
+							<div class="read-more">
+								<a href="{{ url_for('web.read', id=article.id) }}" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">{{ article.tp.t_name }}</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">0</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">0</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						{% endfor %}
+		            </article>
+		        </div>
+		    </div>
+		    <div class="col-other">
+		        <div class="inner">
+					<div class="other-item" id="categoryandsearch">
+			    		<div class="search">
+					        <label class="search-wrap">
+					            <input type="text" id="searchtxt" placeholder="输入关键字搜索" />
+					            <span class="search-icon">
+					                <i class="fa fa-search"></i>
+					            </span>
+					        </label>
+			        		<ul class="search-result"></ul>
+			    		</div>
+			    		<ul class="category mt20" id="category">
+				        	<li data-index="0" class="slider"></li>
+				        	<li data-index="1"><a href="#">全部分类</a></li>
+
+							{% for type in types %}
+				            <li data-index="0"><a href="{{ url_for('web.a_type', id=type.id) }}">{{ type.t_name }}【{{ count_type.count(type.id) }}】</a></li>
+							{% endfor %}
+			    		</ul>
+					</div>
+					<!--右边悬浮 平板或手机设备显示-->
+					<div class="category-toggle"><i class="layui-icon">&#xe603;</i></div>
+					<div class="article-category">
+					    <div class="article-category-title">分类导航</div>
+					            {% for type in types %}
+					            <a href="#">type.t_name</a>
+								{% endfor %}
+					    <div class="f-cb"></div>
+					</div>
+					<!--遮罩-->
+					<div class="blog-mask animated layui-hide"></div>
+					<div class="other-item">
+					    <h5 class="other-item-title">最新文章</h5>
+					    <div class="inner">
+					        <ul class="hot-list-article">
+					                {% for article in articles %}
+					                	<li> <a href="{{ url_for('web.read', id=article.id) }}">{{ article.title }}</a></li>
+									{% endfor %}
+					        </ul>
+					    </div>
+					</div>
+
+		        </div>
+		    </div>
+		</div>
+    </div>
+{% endblock %}
