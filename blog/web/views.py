@@ -48,3 +48,9 @@ def read(id):
     user_id = session['user_id']
     user = User.query.get(user_id)
     return render_template('web/read.html', article=article, user=user)
+
+
+@web_blue.route('/about/')
+def about():
+    articles = Article.query.all()
+    return render_template('web/about.html', articles=articles)

@@ -23,7 +23,7 @@
             <li><a href="{{ url_for('web.article') }}">博客</a></li>
             <li><a href="{{ url_for('web.message') }}">留言</a></li>
         </ul>
-        <div class="logo"><a>博主:{{ user.username }}</a></div>
+        <div class="logo"><a>{{ user.username }}</a></div>
     </div>
     <div class="section" id="section1">
         <div class="fp-tablecell">
@@ -31,7 +31,7 @@
                 <div class="nav wow zoomIn" data-wow-duration="2s">
                     <h1>林、Lin</h1>
                     <p>计算机善于遵循指令，但不善于理解你的思维</p>
-                    <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="#">进入博客</a>
+                    <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="{{ url_for('web.article') }}">进入博客</a>
                 </div>
                 <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
             </div>
@@ -90,7 +90,7 @@
                         <div class="inner">
                             <div class="links">
                                 <ul>
-                                    <li class="wow fadeInLeft"><a href="#">关于</a></li>
+                                    <li class="wow fadeInLeft"><a href="{{ url_for('web.about') }}">关于</a></li>
                                     <li class="wow fadeInRight"><a href="#">+友情链接</a></li>
                                 </ul>
                             </div>
@@ -127,7 +127,7 @@
                             </div>
                             <p>人生苦短，我用Python</p>
                             <div class="button">
-                                <a href="#" class="btn layui-btn layui-btn-normal">About Me</a>
+                                <a href="{{ url_for('web.about') }}" class="btn layui-btn layui-btn-normal">About Me</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
             <div class="container">
                 <div class="layui-row">
                     <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 text-center">
-                        <p>Copyright &copy; 2018-2018 燕十三 All Rights Reserved V.3.1.3 蜀ICP备18008600号</p>
+                        <p>Copyright &copy; 2018-2018 林、Lin All Rights Reserved V.3.1.3 渝ICP备18008600号</p>
                     </div>
                 </div>
             </div>
